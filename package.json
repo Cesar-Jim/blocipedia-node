@@ -1,0 +1,22 @@
+{
+  "name": "blocipedia-node",
+  "version": "1.0.0",
+  "description": "An app that allows users to create, collaborate, and share wikis",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "export NODE_ENV=test&& jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cesar-Jim/blocipedia-node.git"
+  },
+  "keywords": [
+    "blocipedia"
+  ],
+  "author": "Cesar Jimenez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cesar-Jim/blocipedia-node/issues"
+  },
+  "homepage": "https://github.com/Cesar-Jim/blocipedia-node#readme"
+}
