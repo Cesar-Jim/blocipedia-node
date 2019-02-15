@@ -5,7 +5,6 @@ const http = require("http");
 
 // Normalize the port to select it either assigned by the environment (Heroku) or port 3000 (localhost)
 const port = normalizePort(process.env.PORT || "3000");
-
 app.set("port", port);
 
 // Server creation:
