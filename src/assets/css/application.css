@@ -4,5 +4,8 @@ body {
 
 .main-title {
   text-align: center;
-  float: inherit;
+}
+
+.plans-container {
+  padding-left: 25%;
 }
