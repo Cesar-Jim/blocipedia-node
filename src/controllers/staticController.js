@@ -1,7 +1,9 @@
-module.exports = {
-  index(req, res, next) {
+// In MCV, the controller handles a request for a particular resource
 
-    // render takes the location of the template as well as an object containing the data we need in the template
-    res.render("static/index", { title: "Welcome to Blocipedia" });
+module.exports = {
+
+  // index is the handler function for the route: "static/index"
+  index(req, res, next) {
+    res.render("static/index", { title: "Welcome to Blocipedia" }); // returns to <% title %> in index.ejs: "Welcome to Blocipedia"
   }
 }

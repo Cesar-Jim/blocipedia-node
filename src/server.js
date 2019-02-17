@@ -1,13 +1,12 @@
 // This file functions as the Node server
 
-const app = require("./app");
-const http = require("http");
+const app = require("./app"); // Import the initialized Express application ...
+const http = require("http"); // and the http module
 
 // Normalize the port to select it either assigned by the environment (Heroku) or port 3000 (localhost)
 const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
-// Server creation:
 const server = http.createServer(app);
 
 server.listen(port);

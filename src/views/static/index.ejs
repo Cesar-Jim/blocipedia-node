@@ -2,21 +2,23 @@
 <html lang="en">
 
 <head>
-  <% include ./partials/head.ejs %>
+  <% include ../static/partials/head.ejs %>
 </head>
 
 <body>
 
-  <% include ./partials/navbar.ejs %>
+  <% include ../static/partials/navbar.ejs %>
 
   <!-- Page Content -->
   <main class="container">
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
-      <h1 class="display-3">Welcome to Blocipedia</h1>
-      <p class="lead">We are all about Social, Markdown Wikis...</p>
-      <a href="#" class="btn btn-primary btn-lg">Sign up</a>
+      <div class="main-title">
+        <h1 class="display-3">Blocipedia: Social, Markdown Wikis</h1>
+        <p class="lead">Create and share Markdown Wikis</p>
+        <a href="#" class="btn btn-primary btn-lg">Sign up</a>
+      </div>
     </header>
 
     <!-- Page Features -->
@@ -24,13 +26,16 @@
 
       <section class="col-lg-4">
         <h4 class="card-title">Free Plan</h4>
-        <p class="card-text">Create as many public wikis as you want!</p>
+        <p class="card-text">Create as many public wikis as you want!</p></br>
+        <a href="#" class="btn btn-primary btn-lg">Go Free</a>
       </section>
 
       <section class="col-lg-4">
         <h4 class="card-title">Premium Plan</h4>
-        <p class="card-text">Include private wikis!</p>
+        <p class="card-text">Do you need to include private wikis?</p></br>
+        <a href="#" class="btn btn-primary btn-lg">Go Premium</a>
       </section>
+
 
     </section>
     <!-- /.row -->
