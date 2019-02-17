@@ -1,0 +1,22 @@
+                                                     List of databases
+       Name        |  Owner   | Encoding |          Collate           |           Ctype            |   Access privileges   
+-------------------+----------+----------+----------------------------+----------------------------+-----------------------
+ address-bloc-dev  | postgres | UTF8     | English_United States.1252 | English_United States.1252 | 
+ address-bloc-test | postgres | UTF8     | English_United States.1252 | English_United States.1252 | 
+ bloccit-dev       | postgres | UTF8     | English_United States.1252 | English_United States.1252 | 
+ bloccit-test      | postgres | UTF8     | English_United States.1252 | English_United States.1252 | 
+ blocipedia-dev    | postgres | UTF8     | English_United States.1252 | English_United States.1252 | 
+ blocipedia-test   | postgres | UTF8     | English_United States.1252 | English_United States.1252 | 
+ email             | postgres | UTF8     | English_United States.1252 | English_United States.1252 | 
+ game              | postgres | UTF8     | English_United States.1252 | English_United States.1252 | 
+ inventory         | postgres | UTF8     | English_United States.1252 | English_United States.1252 | 
+ library           | postgres | UTF8     | English_United States.1252 | English_United States.1252 | 
+ postgres          | postgres | UTF8     | English_United States.1252 | English_United States.1252 | 
+ school            | postgres | UTF8     | English_United States.1252 | English_United States.1252 | 
+ template0         | postgres | UTF8     | English_United States.1252 | English_United States.1252 | =c/postgres          +
+                   |          |          |                            |                            | postgres=CTc/postgres
+ template1         | postgres | UTF8     | English_United States.1252 | English_United States.1252 | =c/postgres          +
+                   |          |          |                            |                            | postgres=CTc/postgres
+ wedding           | postgres | UTF8     | English_United States.1252 | English_United States.1252 | 
+(15 rows)
+

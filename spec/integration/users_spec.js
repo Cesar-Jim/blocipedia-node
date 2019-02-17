@@ -31,4 +31,59 @@ describe("routes : users", () => {
 
   });
 
+  describe("POST /users", () => {
+    it("should create a new user with valid values and redirect", (done) => {
+
+      const options = {
+        url: base,
+        form: {
+          username: "user",
+          email: "user@example.com",
+          password: "123456"
+        }
+      }
+
+      request.post(options,
+        (err, res, body) => {
+
+          User.findOne({ where: { email: "user@example.com" } })
+            .then((user) => {
+              expect(user).not.toBeNull();
+              expect(user.username).toBe("user");
+              expect(user.id).toBe(1);
+              done();
+            })
+            .catch((err) => {
+              console.log(err);
+              done();
+            });
+        }
+      );
+    });
+
+    it("should not create a new user with invalid attributes and redirect", (done) => {
+      request.post(
+        {
+          url: base,
+          form: {
+            username: "user",
+            email: "no",
+            password: "123456"
+          }
+        },
+        (err, res, body) => {
+          User.findOne({ where: { email: "no" } })
+            .then((user) => {
+              expect(user).toBeNull();
+              done();
+            })
+            .catch((err) => {
+              console.log(err);
+              done();
+            });
+        }
+      );
+    });
+  });
+
 });
