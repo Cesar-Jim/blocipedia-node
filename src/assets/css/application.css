@@ -1,4 +1,4 @@
-body {
+body, .signup-header, .signin-header {
   padding-top: 54px;
 }
 
