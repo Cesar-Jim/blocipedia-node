@@ -4,8 +4,15 @@ body {
 
 .main-title {
   text-align: center;
+  border: 1px solid #bebebe;
+  border-radius: 35px;
+  padding: 5px 0px 0px 0px;
 }
 
 .plans-container {
   padding-left: 25%;
+}
+
+#signup-button {
+  margin-bottom: 30px;
 }

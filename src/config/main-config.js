@@ -12,6 +12,7 @@ const flash = require("express-flash");
 
 module.exports = {
   init(app, express) { // holds the Express application instance as well as the Express instance
+
     app.set("views", viewsFolder);
     app.set("view engine", "ejs");
     app.use(express.static(path.join(__dirname, "..", "assets"))); // Mount the view and tell Express where to find static assets
@@ -25,5 +26,6 @@ module.exports = {
       cookie: { maxAge: 60000 }
     }));
     app.use(flash());
+
   }
 };
