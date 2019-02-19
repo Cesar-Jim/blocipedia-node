@@ -3,7 +3,8 @@ body,
 .signin-header,
 .new-wiki-header,
 .wiki-list-header,
-.wiki-show-header {
+.wiki-show-header,
+.wiki-edit-header {
   padding-top: 54px;
 }
 

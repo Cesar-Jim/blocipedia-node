@@ -18,7 +18,8 @@
       <% if(!wiki.private) { %>
       <% count++; %>
       <li class="list-group-item">
-        <a href="/wikis/<%= wiki.id %>"><%= `${count}. ${wiki.title}` %></a>
+        <a href="/wikis/<%= wiki.id %>"><span
+            class="badge badge-primary badge-pill"><%= `${count} ` %></span><%= ` ${wiki.title}` %></a>
       </li>
       <% } %>
       <% }) %>
