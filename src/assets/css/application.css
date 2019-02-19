@@ -1,11 +1,16 @@
-body, .signup-header, .signin-header {
+body, 
+.signup-header, 
+.signin-header,
+.new-wiki-header,
+.wiki-list-header,
+.wiki-show-header {
   padding-top: 54px;
 }
 
 .main-title {
   text-align: center;
   border: 1px solid #bebebe;
-  border-radius: 35px;
+  border-radius: 5px;
   padding: 5px 0px 0px 0px;
 }
 

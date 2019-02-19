@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <% include ../static/partials/head.ejs %>
+</head>
+
+<body>
+
+  <% include ../static/partials/navbar.ejs %>
+
+  <main class="container">
+    <h1 class="wiki-list-header">Wikis</h1>
+
+    <ul class="list-group">
+      <% let count = 0; %>
+      <% wikis.forEach((wiki) => { %>
+      <% if(!wiki.private) { %>
+      <% count++; %>
+      <li class="list-group-item">
+        <a href="/wikis/<%= wiki.id %>"><%= `${count}. ${wiki.title}` %></a>
+      </li>
+      <% } %>
+      <% }) %>
+    </ul>
+
+    <br>
+    <br>
+    <% if(currentUser) { %>
+    <a href="/wikis/new" class="btn btn-success">New wiki</a>
+    <% } %>
+
+  </main>
+
+
+
+  <% include ../static/partials/baseScripts.ejs %>
+
+</body>
+
+</html>
