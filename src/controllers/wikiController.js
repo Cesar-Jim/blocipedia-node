@@ -21,7 +21,7 @@ module.exports = {
       res.render("wikis/new");
     } else {
       req.flash("notice", "You are not authorized to do that.");
-      res.redirect("/wikis");
+      res.redirect("/wikis/wiki");
     }
 
   },
@@ -47,7 +47,7 @@ module.exports = {
       });
     } else {
       req.flash("notice", "You are not authorized to do that.");
-      res.redirect("/wikis");
+      res.redirect("/wikis/wiki");
     }
   },
 
@@ -83,6 +83,7 @@ module.exports = {
 
         if (authorized) {
           res.render("wikis/edit", { wiki });
+
         } else {
           req.flash("notice", "You are not authorized to do that.");
           res.redirect(`/wikis/${req.params.id}`);
@@ -94,7 +95,7 @@ module.exports = {
   update(req, res, next) {
     wikiQueries.updateWiki(req, req.body, (err, wiki) => {
       if (err || wiki == null) {
-        res.redirect(404, `/wikis/${req.params.id}/edit`);
+        res.redirect(404, `/wikis/wiki/${req.params.id}/edit`);
       } else {
         res.redirect(`/wikis/${req.params.id}`);
       }

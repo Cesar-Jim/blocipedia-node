@@ -1,5 +1,6 @@
 const Wiki = require("./models").Wiki;
 const User = require("./models").User;
+const Authorizer = require("../policies/application");
 
 module.exports = {
 
@@ -42,13 +43,13 @@ module.exports = {
     return Wiki.findById(req.params.id)
       .then((wiki) => {
 
-        const authorized = new Authorizer(req.user, topic).destroy();
+        const authorized = new Authorizer(req.user, wiki).destroy();
 
         if (authorized) {
           wiki.destroy()
             .then((res) => {
               callback(null, wiki);
-            });
+            })
         } else {
           req.flash("notice", "You are not authorized to do that.")
           callback(401);
@@ -66,7 +67,7 @@ module.exports = {
           return callback("Wiki not found");
         }
 
-        const authorized = new Authorizer(req.user, topic).update();
+        const authorized = new Authorizer(req.user, wiki).update();
 
         if (authorized) {
 
