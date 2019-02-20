@@ -33,6 +33,40 @@ module.exports = {
       .catch((err) => {
         callback(err);
       })
+  },
+
+  upgradeUser(req, callback) {
+    return User.findById(req.params.id)
+      .then((user) => {
+        if (!user) {
+          return callback("Could not find user")
+
+        } else {
+          user.update({ role: 1 })
+            .then(() => {
+              callback(null, user);
+            })
+            .catch((err) => {
+              callback(err);
+            });
+        }
+      });
+  },
+
+  downgradeUser(req, callback) {
+    return User.findById(req.params.id)
+      .then((user) => {
+        if (!user) {
+          return callback("Could not find user")
+        }
+        user.update({ role: 0 })
+          .then(() => {
+            callback(null, user);
+          })
+          .catch((err) => {
+            callback(err);
+          });
+      })
   }
 
 }

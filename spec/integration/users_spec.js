@@ -97,4 +97,14 @@ describe("routes : users", () => {
 
   });
 
+  describe("GET /users/premium", () => {
+    it("should render a view with a premium upgrade form", (done) => {
+      request.get(`${base}premium`, (err, res, body) => {
+        expect(err).toBeNull();
+        expect(body).toContain("Premium");
+        done();
+      });
+    });
+  });
+
 });

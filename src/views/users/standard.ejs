@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../static/partials/head.ejs %>
+</head>
+
+<body>
+
+  <% include ../static/partials/navbar.ejs %>
+  <main class="container">
+
+    <% include ../static/partials/messages.ejs %>
+
+
+    <% if (currentUser.role === 0 || currentUser.role === 2) { %>
+    <header class="jumbotron my-4"></header>
+    <form action='/users/<%= currentUser.id %>/premium' method="POST">
+      <div class="main-title">
+        <br>
+        <h2>You already have access to the Free Plan.</h2>
+        <p class="lead">You can become a PREMIUM member at any time! </p>
+        <br>
+        <h1 class="display-4">For only $15/mo.</h1>
+        <br>
+        <a href="/users/premium" class="btn btn-primary btn-lg">Go Premium</a>
+        <br>
+        <br>
+      </div>
+    </form>
+    </header>
+    <% } %>
+
+    <% if (currentUser.role === 1 || currentUser.role === 2) { %>
+    <header class="jumbotron my-4"></header>
+    <form action='/users/<%= currentUser.id %>/standard' method="POST">
+      <div class="main-title">
+        <br>
+        <h2 class="display-4">Thank you for being a Premium Customer!</h2>
+        <p class="lead">(You are free to downgrade at any time)</p>
+        <br>
+        <h3>If you no longer need private wikis and close collaboration with others then...</h3>
+        <br>
+        <button type="submit" class="btn btn-primary">Go Free</button>
+        <br>
+        <br>
+        <br>
+      </div>
+    </form>
+    </header>
+    <% } %>
+
+
+
+
+  </main>
+
+
+
+
+  <% include ../static/partials/baseScripts.ejs %>
+</body>
+
+</html>

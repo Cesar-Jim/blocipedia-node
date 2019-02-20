@@ -1,8 +1,10 @@
 const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
 const sgMail = require('@sendgrid/mail');
+const Authorizer = require("../policies/application");
+var stripe = require("stripe")("STRIPE_API_KEY");
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgMail.setApiKey(process.env.STRIPE_API_KEY);
 
 module.exports = {
   signUp(req, res, next) {
@@ -68,6 +70,64 @@ module.exports = {
     req.logout();
     req.flash("notice", "You've successfully signed out!");
     res.redirect("/");
-  }
+  },
 
+  premiumForm(req, res, next) {
+    const authorized = new Authorizer(req.user).new();
+
+    if (authorized) {
+      res.render("users/premium");
+
+    } else {
+      req.flash("notice", "Please sign in to modify your current plan");
+      res.redirect("/");
+    }
+  },
+
+  premium(req, res, next) {
+    const token = req.body.stripeToken;
+
+    userQueries.upgradeUser(req, (err, user) => {
+      if (err || user == null) {
+        req.flash("notice", "Please try again");
+        res.redirect(404, `/users/${req.params.id}`);
+
+      } else {
+        (async () => {
+          const charge = await stripe.charges.create({
+            amount: 1500,
+            currency: 'usd',
+            description: 'Premium membership',
+            source: token,
+          });
+        })();
+        res.redirect(302, "/")
+      }
+    });
+  },
+
+  standardForm(req, res, next) {
+    const authorized = new Authorizer(req.user).new();
+
+    if (authorized) {
+      res.render("users/standard");
+
+    } else {
+      req.flash("notice", "Please sign in to modify your current plan");
+      res.redirect("/");
+    }
+  },
+
+  standard(req, res, next) {
+    userQueries.downgradeUser(req, (err, user) => {
+      if (err || user == null) {
+        req.flash("notice", "Please try again");
+        res.redirect(404, `/users/${req.params.id}`);
+
+      } else {
+        req.flash("notice", "Plan downgraded successfully");
+        res.redirect(302, `/`);
+      }
+    })
+  }
 }
