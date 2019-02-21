@@ -1,5 +1,6 @@
 const wikiQueries = require("../db/queries.wikis.js");
 const Authorizer = require("../policies/application");
+const markdown = require("markdown").markdown;
 
 module.exports = {
 
@@ -31,8 +32,8 @@ module.exports = {
 
     if (authorized) {
       let newWiki = {
-        title: req.body.title,
-        body: req.body.body,
+        title: markdown.toHTML(req.body.title),
+        body: markdown.toHTML(req.body.body),
         private: req.body.private || false,
         userId: req.user.id
       };
@@ -82,6 +83,7 @@ module.exports = {
         const authorized = new Authorizer(req.user).new();
 
         if (authorized) {
+
           res.render("wikis/edit", { wiki });
 
         } else {

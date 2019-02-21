@@ -19,7 +19,7 @@
       <% count++; %>
       <li class="list-group-item">
         <a href="/wikis/<%= wiki.id %>"><span
-            class="badge badge-primary badge-pill"><%= `${count} ` %></span><%= ` ${wiki.title}` %></a>
+            class="badge badge-primary badge-pill"><%= `${count} ` %></span><%- ` ${wiki.title}` %></a>
       </li>
       <% } %>
       <% }) %>
