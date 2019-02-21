@@ -54,19 +54,70 @@ module.exports = {
   },
 
   downgradeUser(req, callback) {
-    return User.findById(req.params.id)
+    User.findById(req.params.id)
       .then((user) => {
         if (!user) {
-          return callback("Could not find user")
-        }
-        user.update({ role: 0 })
-          .then(() => {
-            callback(null, user);
+          callback("User not found");
+
+        } else {
+          user.update({
+            role: 0
           })
-          .catch((err) => {
-            callback(err);
-          });
-      })
+            .then((user) => {
+              Wiki.findAll({ where: { userId: user.id } })
+                .then((wikis) => {
+                  wikis.forEach((wiki) => {
+                    wiki.update({
+                      private: false
+                    })
+                      .then(() => {
+                        callback(null, user);
+                      })
+                      .catch((err) => {
+                        callback(err);
+                      })
+                  })
+                    .catch((err) => {
+                      callback(err);
+                    });
+                })
+            });
+        };
+      });
   }
+
+
+
+
+  // downgradeUser(req, callback) {
+  //   return User.findById(req.params.id)
+  //     .then((user) => {
+  //       if (!user) {
+  //         return callback("Could not find user")
+  //       }
+  //       user.update({ role: 0 })
+  //         .then(() => {
+  //           callback(null, user);
+  //           console.log("user id: ", id);
+  //           return Wiki.findAll({
+  //             where: { userId: id }
+  //           })
+  //             .then((wikis) => {
+  //               console.log("found wiki");
+  //               console.log(wikis[0].title);
+  //               return wikis.forEach((wiki) => {
+  //                 wiki.update({ private: false })
+  //               })
+  //                 .then(() => {
+  //                   callback(null, user);
+  //                   callback(null, wikis);
+  //                 })
+  //             })
+  //         })
+  //         .catch((err) => {
+  //           callback(err);
+  //         });
+  //     })
+  // }
 
 }
