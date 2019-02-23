@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const wikiController = require("../controllers/wikiController");
+const User = require("../../src/db/models").User;
 
 router.get("/wikis/wiki", wikiController.index);
 router.get("/wikis/new", wikiController.new);
