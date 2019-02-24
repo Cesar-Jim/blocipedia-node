@@ -99,7 +99,8 @@ module.exports = {
   update(req, res, next) {
     wikiQueries.updateWiki(req, req.body, (err, wiki) => {
       if (err || wiki == null) {
-        res.redirect(404, `/wikis/wiki/${req.params.id}/edit`);
+        req.flash("notice", "You are not authorized to do that.");
+        res.redirect(`/wikis/${req.params.id}`);
       } else {
         res.redirect(`/wikis/${req.params.id}`);
       }

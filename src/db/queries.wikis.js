@@ -2,6 +2,8 @@ const Wiki = require("./models").Wiki;
 const User = require("./models").User;
 const Collaborator = require("./models").Collaborator;
 const Authorizer = require("../policies/application");
+const Private = require("../policies/wiki");
+const Public = require("../policies/application");
 
 module.exports = {
 
@@ -86,7 +88,14 @@ module.exports = {
               return callback("Wiki not not found.");
             }
 
-            const authorized = new Authorizer(req.user, wiki).update();
+            let authorized = new Authorizer(req.user, wiki).update();
+
+            if (wiki.private == false) {
+              authorized = new Public(req.user, wiki).update();
+
+            } else {
+              authorized = new Private(req.user, wiki, collaborator).update();
+            }
 
             if (authorized) {
 

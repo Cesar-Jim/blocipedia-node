@@ -29,7 +29,6 @@
     <a href="/wikis/new" class="btn btn-dark">New Public Wiki</a>
     <% } %>
     <br>
-    <br>
 
     <!-- Display a list of private wikis if the user is Premium or Admin-->
     <% if(currentUser && (currentUser.role == 1 || currentUser.role == 2)) { %>
@@ -54,35 +53,25 @@
 
     <!-- Display a list of wikis if where the user has as collaborator -->
     <% if(currentUser && (currentUser.role == 0)) { %>
-    <h1 class="wiki-list-header">Your Collaboration...</h1>
+    <h1 class="wiki-list-header">Collaborating on:</h1>
+    <br>
     <ul class="list-group">
       <% let count = 0 %>
-
-
-
-
       <% wikis.forEach((wiki) => { %>
-      <% console.log(wiki.collaborators[1])%>
-
-
-      <% if(wiki.private && (currentUser.id == wiki.collaborators[0].dataValues.userId)) { %>
-
+      <% wiki.collaborators.forEach((collaborator) => { %>
+      <% if(currentUser.id == collaborator.userId) { %>
       <% count++ %>
       <li class="list-group-item">
         <a href="/wikis/<%= wiki.id %>"><span
             class="badge badge-success badge-pill"><%= `${count} ` %></span><br><%- ` ${wiki.title}` %></a>
       </li>
-      <% } else %>
+      <% } %>
       <% }) %>
-
-      <% console.log('--------------------------------------------')%>
+      <% }) %>
+      <% } %>
     </ul>
     <br>
-    <a href="/wikis/new" class="btn btn-success">New Private Wiki</a>
-    <% } %>
     <br>
-    <br>
-
 
   </main>
 

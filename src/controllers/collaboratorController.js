@@ -33,28 +33,4 @@ module.exports = {
     }
   }
 
-
 }
-
-// const collaboratorQueries = require("../db/queries.collaborators.js");
-
-// module.exports = {
-//   addCollaborator(req, res, next) {
-
-//     let newCollaborator = {
-//       username: requestAnimationFrame.body.username,
-//       email: requestAnimationFrame.body.email,
-//       wikiId: requestAnimationFrame.params.wikiId
-//     };
-
-//     console.log(`Collaborator email: ${newCollaborator.email}`);
-//     console.log(`WikiId: ${newCollaborator.wikiId}`);
-
-//     collaboratorQueries.addMember(newCollaborator.username, newCollaborator.email, newCollaborator.wikiId, (err, member) => {
-//       if (err) {
-//         req.flash("error", err);
-//       }
-//       res.redirect(req.headers.referer);
-//     });
-//   }
-// }

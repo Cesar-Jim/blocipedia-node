@@ -1,11 +1,16 @@
 module.exports = class ApplicationPolicy {
 
-  constructor(user, record) {
+  constructor(user, record, collaborator = null) {
     this.user = user;
     this.record = record;
+    this.collaborator = collaborator;
   }
 
   // Helper methods: all return boolean values
+
+  _isCollaborator() {
+    return this.collaborator;
+  }
 
   _isOwner() {
     return this.record && (this.record.userId == this.user.id);
@@ -33,7 +38,7 @@ module.exports = class ApplicationPolicy {
 
   edit() {
     return this.new() &&
-      this.record && (this._isOwner() || this._isAdmin());
+      this.record && (this._isOwner() || this._isAdmin() || this._isCollaborator());
   }
 
   update() {

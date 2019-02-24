@@ -9,7 +9,7 @@ module.exports = class WikiPolicy extends ApplicationPolicy {
   }
 
   _isCollaborator() {
-    return !!this.collaborator;
+    return this.collaborator;
   }
 
   new() {
